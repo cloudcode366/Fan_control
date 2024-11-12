@@ -32,4 +32,9 @@ public class Controller {
         fanService.turnOffAll();
         return ResponseEntity.ok(states);
     }
+    
+    @GetMapping("/refresh")
+    public ResponseEntity<String> refresh(){
+        return ResponseEntity.ok("Refresh");
+    }
 }
