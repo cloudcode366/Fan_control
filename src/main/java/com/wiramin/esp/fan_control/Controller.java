@@ -27,7 +27,7 @@ public class Controller {
     public ResponseEntity<List<State>> getState(){
         List<State> states = fanService.getAllStates()
                 .stream()
-                .map(state -> new State(state.getId(), state.getState()))
+                .map(state -> new State(state.getId(),state.getName(), state.getState()))
                 .collect(Collectors.toList());
         fanService.turnOffAll();
         return ResponseEntity.ok(states);
