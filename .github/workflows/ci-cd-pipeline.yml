@@ -14,7 +14,9 @@ jobs:
 
     steps:
       - name: test
-        run: echo "start build"
+        run: |
+            echo "start build"
+            exit 0
       # Checkout mã nguồn
       - name: Checkout code
         uses: actions/checkout@v2
