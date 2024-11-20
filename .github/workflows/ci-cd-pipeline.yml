@@ -17,19 +17,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Cài đặt Docker
-      - name: Set up Docker
+      # Cài đặt Docker Buildx
+      - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
+
+      # In thông báo trước khi build
+      - name: Print Build Start Message
+        run: echo "Building Docker image for the project..."
 
       # Build Docker image
       - name: Build Docker image
         run: |
-          docker build -t fan_control-tripwonder .
-
-      # Chạy ứng dụng trong container Docker (tùy chọn)
-      - name: Run Docker container
-        run: |
-          docker run -d -p 8080:8080 fan_control-tripwonder
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/fan_control-tripwonder:latest .
+      
+      # In thông báo khi build thành công
+      - name: Print Build Success Message
+        run: echo "Docker image built successfully."
 
   deploy:
     runs-on: ubuntu-latest
@@ -40,16 +43,31 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Đăng nhập vào Docker Hub (hoặc Registry khác)
+      # In thông báo trước khi đăng nhập Docker Hub
+      - name: Print Login Start Message
+        run: echo "Logging in to Docker Hub..."
+
+      # Đăng nhập Docker Hub
       - name: Login to Docker Hub
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      # Push Docker image lên Docker Hub (hoặc Registry khác)
+      # In thông báo sau khi đăng nhập thành công
+      - name: Print Login Success Message
+        run: echo "Successfully logged in to Docker Hub."
+
+      # In thông báo trước khi push image
+      - name: Print Push Start Message
+        run: echo "Pushing Docker image to Docker Hub..."
+
+      # Push Docker image lên Docker Hub
       - name: Push Docker image to Docker Hub
         run: |
-          docker tag fan_control-tripwonder wiramin/fan_control-tripwonder:latest
-          docker push wiramin/fan_control-tripwonder:latest
+          docker tag fan_control-tripwonder:latest ${{ secrets.DOCKER_USERNAME }}/fan_control-tripwonder:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/fan_control-tripwonder:latest
 
+      # In thông báo sau khi push thành công
+      - name: Print Push Success Message
+        run: echo "Docker image pushed to Docker Hub successfully."
