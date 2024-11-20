@@ -32,7 +32,7 @@ jobs:
       # Build Docker image
       - name: Build Docker image
         run: |
-          docker build -t wirmain/fan_control-tripwonder:latest .
+          docker build -t fan_control-tripwonder .
 
       # In thông báo khi build thành công
       - name: Print Build Success Message
