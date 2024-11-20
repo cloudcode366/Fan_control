@@ -32,7 +32,7 @@ jobs:
       # Build Docker image
       - name: Build Docker image
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/fan_control-tripwonder:latest .
+          docker build -t wirmain/fan_control-tripwonder:latest .
 
       # In thông báo khi build thành công
       - name: Print Build Success Message
@@ -69,8 +69,8 @@ jobs:
       # Push Docker image lên Docker Hub
       - name: Push Docker image to Docker Hub
         run: |
-          docker tag ${{ secrets.DOCKER_USERNAME }}/fan_control-tripwonder:latest ${{ secrets.DOCKER_USERNAME }}/fan_control-tripwonder:latest
-          docker push ${{ secrets.DOCKER_USERNAME }}/fan_control-tripwonder:latest
+          docker tag wiramin/fan_control-tripwonder:latest wiramin/fan_control-tripwonder:latest
+          docker push wiramin/fan_control-tripwonder:latest
 
       # In thông báo sau khi push thành công
       - name: Print Push Success Message
