@@ -23,13 +23,13 @@ jobs:
 
       # In thông báo trước khi build
       - name: Print Build Start Message
-        run: echo "Building Docker image for the project..."
+        run: echo "Starting Docker image build..."
 
       # Build Docker image
       - name: Build Docker image
         run: |
           docker build -t ${{ secrets.DOCKER_USERNAME }}/fan_control-tripwonder:latest .
-      
+
       # In thông báo khi build thành công
       - name: Print Build Success Message
         run: echo "Docker image built successfully."
@@ -45,7 +45,7 @@ jobs:
 
       # In thông báo trước khi đăng nhập Docker Hub
       - name: Print Login Start Message
-        run: echo "Logging in to Docker Hub..."
+        run: echo "Logging into Docker Hub..."
 
       # Đăng nhập Docker Hub
       - name: Login to Docker Hub
@@ -56,7 +56,7 @@ jobs:
 
       # In thông báo sau khi đăng nhập thành công
       - name: Print Login Success Message
-        run: echo "Successfully logged in to Docker Hub."
+        run: echo "Logged in to Docker Hub successfully."
 
       # In thông báo trước khi push image
       - name: Print Push Start Message
@@ -65,7 +65,7 @@ jobs:
       # Push Docker image lên Docker Hub
       - name: Push Docker image to Docker Hub
         run: |
-          docker tag fan_control-tripwonder:latest ${{ secrets.DOCKER_USERNAME }}/fan_control-tripwonder:latest
+          docker tag ${{ secrets.DOCKER_USERNAME }}/fan_control-tripwonder:latest ${{ secrets.DOCKER_USERNAME }}/fan_control-tripwonder:latest
           docker push ${{ secrets.DOCKER_USERNAME }}/fan_control-tripwonder:latest
 
       # In thông báo sau khi push thành công
