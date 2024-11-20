@@ -69,7 +69,7 @@ jobs:
       # Push Docker image lên Docker Hub
       - name: Push Docker image to Docker Hub
         run: |
-          docker tag wiramin/fan_control-tripwonder:latest wiramin/fan_control-tripwonder:latest
+          docker tag fan_control-tripwonder wiramin/fan_control-tripwonder:latest
           docker push wiramin/fan_control-tripwonder:latest
 
       # In thông báo sau khi push thành công
