@@ -3,10 +3,10 @@ name: Java CI/CD Pipeline with Docker
 on:
   push:
     branches:
-      - main  # Chạy khi có commit lên nhánh main
+      - master  # Chạy khi có commit lên nhánh master
   pull_request:
     branches:
-      - main  # Chạy khi có pull request vào nhánh main
+      - master  # Chạy khi có pull request vào nhánh master
 
 jobs:
   build:
