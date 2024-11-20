@@ -50,7 +50,7 @@ jobs:
         run: docker images  # In ra danh sách image trước khi push
         
       - name: Show image
-        run: docker ps -a
+        run: docker ps
 
       - name: Push Docker image to Docker Hub
         run: |
